@@ -28,6 +28,16 @@ public class CustomArrayList<T> implements CustomList<T> {
 			size++;
 			return true;
 	}
+	
+	public boolean add(int index, T t) {
+		int oldCapacity = arrayValues.length;
+		int newCapacity = oldCapacity + 1;
+		arrayValues = Arrays.copyOf(arrayValues, newCapacity);
+		System.arraycopy(arrayValues, index, arrayValues, index + 1, size - index);
+		arrayValues[index] = t;
+		size++;
+		return true;
+	}
 		
 	public T remove(int index) {
 		T oldVal = (T)arrayValues[index];
@@ -35,6 +45,13 @@ public class CustomArrayList<T> implements CustomList<T> {
 		System.arraycopy(arrayValues, index + 1, arrayValues, index, removeNum);
 		arrayValues[--size] = null;
 		return oldVal;
+	}
+	
+	public void clear() {
+		for(int i = 0; i < size; i++) {
+			arrayValues[i] = null;
+		}
+		size = 0;
 	}
 	
 	public void replace(int index, T t) {

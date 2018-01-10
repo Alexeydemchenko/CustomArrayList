@@ -10,8 +10,12 @@ public interface CustomList<T> extends Iterable<T> {
 	
 	public boolean add(T t);
 	
+	public boolean add(int index, T t);
+	
 	T get(int index);
 	
 	public void replace(int index, T t);
+	
+	public void clear();
 
 }
